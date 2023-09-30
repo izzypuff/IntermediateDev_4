@@ -13,22 +13,26 @@ public class PlayerControl : MonoBehaviour
     //jumping
     bool grounded = false;
     public float castDist = 0.2f;
-
     public float jumpLimit = 2f;
     public float gravityScale = 2f;
     public float gravityFall = 40f;
-
     bool jump = false;
     bool doubleJump = false;
-    bool jumpAnimation = false;
 
+    //rigid body
     Rigidbody2D myBody;
 
+    //animator
     Animator myAnim;
 
+    //sprite renderer
     SpriteRenderer myRend;
 
-    private string Death = "Death";
+    public GameManager gameManager;
+
+    public GameObject Death;
+
+    public GameObject Teleport;
 
     // Start is called before the first frame update
     void Start()
@@ -42,16 +46,20 @@ public class PlayerControl : MonoBehaviour
     void Update()
     {
         horizontalMove = Input.GetAxis("Horizontal");
-        Debug.Log(horizontalMove);
 
         if (Input.GetButtonDown("Jump"))
         {
-            jumpAnimation = true;
             if (grounded || doubleJump)
             {
                 jump = true;
                 doubleJump = !doubleJump;
+                myAnim.SetBool("Jumping", true);
+
             }
+        }
+        else
+        {
+            myAnim.SetBool("Jumping", false);
         }
 
         if (horizontalMove > 0.1f)
@@ -67,11 +75,6 @@ public class PlayerControl : MonoBehaviour
         else
         {
             myAnim.SetBool("Walking", false);
-        }
-
-        if(jumpAnimation)
-        {
-            myAnim.SetBool("Jumping", true);
         }
     }
 
@@ -99,7 +102,6 @@ public class PlayerControl : MonoBehaviour
         if(hit.collider != null && hit.transform.name == "Ground")
         {
             grounded = true;
-            Debug.Log("sup");
         }
         else
         {
@@ -113,7 +115,12 @@ public class PlayerControl : MonoBehaviour
     {
         if(collision.gameObject.name == "Death")
         {
-            SceneManager.LoadScene(Death);
+            gameManager.Restart();
+        }
+
+        if(collision.gameObject.name == "Teleport")
+        {
+            gameManager.Teleport();
         }
     }
 }
