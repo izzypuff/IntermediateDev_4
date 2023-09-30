@@ -555,8 +555,8 @@ MonoBehaviour:
   speed: 6
   castDist: 1
   jumpLimit: 10
-  gravityScale: 3
-  gravityFall: 9
+  gravityScale: 2.5
+  gravityFall: 8
   gameManager: {fileID: 471648818}
   Death: {fileID: 1055813821}
   Teleport: {fileID: 480154041}

@@ -455,10 +455,11 @@ MonoBehaviour:
   speed: 6
   castDist: 1
   jumpLimit: 10
-  gravityScale: 3
-  gravityFall: 9
+  gravityScale: 2.5
+  gravityFall: 8
   gameManager: {fileID: 1722617438}
   Death: {fileID: 158522498}
+  Teleport: {fileID: 0}
 --- !u!50 &263461057
 Rigidbody2D:
   serializedVersion: 4
@@ -915,7 +916,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 638597943}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.2, y: 8.1, z: 0}
+  m_LocalPosition: {x: -4.2, y: 9.39, z: 0}
   m_LocalScale: {x: 1.2, y: 1.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
